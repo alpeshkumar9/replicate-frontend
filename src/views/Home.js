@@ -1,42 +1,39 @@
+import React, { useState, useEffect } from 'react';
 
-import { useState } from "react";
-// node.js library that concatenates classes (strings)
-import classnames from "classnames";
-// javascipt plugin for creating charts
-import Chart from "chart.js";
-// react plugin used to create charts
-import { Line, Bar } from "react-chartjs-2";
-// reactstrap components
 import {
     Button,
     Card,
     CardHeader,
-    CardBody,
-    NavItem,
-    NavLink,
-    Nav,
-    Progress,
     Table,
     Container,
     Row,
     Col,
 } from "reactstrap";
 
+import { Auth } from './Auth';
 import Header from "../components/Headers/Header";
+import { allBooks } from '../network/ApiAxios';
 
 const Home = (props) => {
-    const [activeNav, setActiveNav] = useState(1);
-    const [chartExample1Data, setChartExample1Data] = useState("data1");
+    const [books, setBooks] = useState([]);
 
-    const toggleNavs = (e, index) => {
-        e.preventDefault();
-        setActiveNav(index);
-        setChartExample1Data("data" + index);
-    };
+    useEffect(() => {
+        const fetchBooks = async () => {
+            const data = await allBooks();
+            setBooks(data);
+        };
+
+        fetchBooks();
+    }, []);
+
     return (
         <>
             <Header />
             {/* Page content */}
+            <div>
+                {/* Optionally, render some UI while data is being fetched */}
+                {!books.length ? <p>Loading books...</p> : null}
+            </div>
             <Container className="mt--7" fluid>
                 <Row className="mt-5">
                     <Col className="mb-5 mb-xl-0" xl="12">
@@ -68,14 +65,13 @@ const Home = (props) => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">/argon/</th>
-                                        <td>4,569</td>
-                                        <td>340</td>
-                                        <td>
-                                            <i className="fas fa-arrow-up text-success mr-3" /> 46,53%
-                                        </td>
-                                    </tr>
+                                    {books.map((book) => (
+                                        <tr key={book.id}>
+                                            <td>{book.title}</td>
+                                            <td>{book.author}</td>
+                                            <td>{book.tag_names.join(', ')}</td>
+                                        </tr>
+                                    ))}
                                 </tbody>
                             </Table>
                         </Card>
@@ -87,4 +83,4 @@ const Home = (props) => {
     );
 };
 
-export default Home;
+export default Auth(Home);
