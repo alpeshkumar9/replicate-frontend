@@ -1,23 +1,32 @@
 {
-  "name": "replicate-frontend",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@ant-design/icons": "^5.3.3",
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "antd": "^5.15.3",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+  "name": "alpesh-library-app",
+  "version": "1.2.4",
+  "description": "Library App",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alpeshkumar9/replicate-frontend.git"
   },
+  "keywords": [
+    "react",
+    "reactjs"
+  ],
+  "author": "Alpesh Kumar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alpeshkumar9/replicate-frontend/issues"
+  },
+  "homepage": "http://localhost:3000/",
+  "private": true,
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
+    "compile:scss": "sass src/assets/scss/argon-dashboard-react.scss src/assets/css/argon-dashboard-react.css",
+    "minify:scss": "sass src/assets/scss/argon-dashboard-react.scss src/assets/css/argon-dashboard-react.min.css --style compressed",
+    "build:scss": "npm run compile:scss && npm run minify:scss && npm run map:scss"
   },
   "eslintConfig": {
     "extends": [
@@ -29,6 +38,7 @@
     "production": [
       ">0.2%",
       "not dead",
+      "not ie <= 11",
       "not op_mini all"
     ],
     "development": [
@@ -36,5 +46,37 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@fortawesome/fontawesome-free": "6.5.1",
+    "bootstrap": "5.3.3",
+    "chart.js": "4.4.2",
+    "classnames": "2.5.1",
+    "moment": "2.30.1",
+    "nouislider": "15.7.1",
+    "react": "18.2.0",
+    "react-chartjs-2": "5.2.0",
+    "react-copy-to-clipboard": "5.1.0",
+    "react-datetime": "3.2.0",
+    "react-dom": "18.2.0",
+    "react-router-dom": "6.21.1",
+    "react-scripts": "5.0.1",
+    "reactstrap": "9.2.2",
+    "sass": "1.72.0"
+  },
+  "devDependencies": {
+    "gulp": "4.0.2",
+    "gulp-append-prepend": "1.0.9"
+  },
+  "optionalDependencies": {
+    "eslint-plugin-flowtype": "8.0.3"
+  },
+  "overrides": {
+    "svgo": "3.0.2",
+    "fsevents": "2.3.2",
+    "chokidar": "3.5.3"
   }
 }
