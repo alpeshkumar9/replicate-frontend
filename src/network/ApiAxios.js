@@ -36,6 +36,22 @@ export const verifyToken = async (token) => (
     )
 );
 
-export const allBooks = async (username, password) => (
+export const allBooks = async () => (
     await makeApiRequest(baseURL + 'books/')
+);
+
+export const allReaders = async () => (
+    await makeApiRequest(baseURL + 'readers/')
+);
+
+export const loanBookToReader = async (token, book, user) => (
+    await makeApiRequest(
+        baseURL + 'book/loan/',
+        'post',
+
+        {
+            'Authorization': 'Token ' + token,
+            'Content-Type': 'application/json',
+        },
+        { book, user })
 );

@@ -4,7 +4,7 @@ import Login from "./views/Login";
 var routes = [
     {
         path: "/",
-        name: "Books",
+        name: "Home",
         icon: "ni ni-tv-2 text-primary",
         component: <Home />,
         layout: "/",
